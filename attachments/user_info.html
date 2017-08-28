@@ -1,0 +1,206 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue-amber.min.css" />
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
+
+
+</head>
+<style>
+body{ 
+   background: url("") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+   background-size: cover;
+}
+</style>
+<body>
+  <!--<div>
+    <form>
+	   <h3>Enter height</h3>
+	   <input type="number" id="height_feet">feet<br>
+	   <input type="number" id="height_inches">inches<br>
+	   <h3>Enter weight</h3>
+	   <input type="number" id="weight">Enter weight<br>
+	   <button onclick="get_height_weight()">Enter</button> 
+    </form>	
+  </div>
+  <a href="goal.html">go to goal..</a>-->
+  
+  
+  
+<div class="container">
+<div class="row" style="text-align:center;font-family:Bree Serif">
+
+ <h2> Enter your info </h2>
+ 
+</div>
+<div class="input_userinfo">
+<div class="row">
+  <div class="col-xs-2">
+       
+  </div>
+  <div class="col-xs-8" style="text-align:center">
+     <form>
+	   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+       <input class="mdl-textfield__input" type="number" id="height_feet">
+       <label class="mdl-textfield__label" for="height">Height in feet</label>
+       </div>
+	 </form>
+  </div> 
+  <div class="col-xs-2">
+
+  </div>
+ 
+</div>
+<div class="row">
+  <div class="col-xs-2">
+   
+  </div>
+  <div class="col-xs-8" style="text-align:center">
+     <form>
+	   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+       <input class="mdl-textfield__input" type="number" id="height_inches">
+       <label class="mdl-textfield__label" for="height">Height in inches</label>
+       </div>
+	 </form>
+  </div> 
+  <div class="col-xs-2">
+
+  </div>
+ 
+</div>
+<div class="row">
+  <div class="col-xs-2">
+   
+  </div>
+  <div class="col-xs-8" style="text-align:center">
+     <form>
+	   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+       <input class="mdl-textfield__input" type="number" id="weight">
+       <label class="mdl-textfield__label" for="weight">weight in kgs</label>
+       </div>
+	 </form>
+  </div> 
+  <div class="col-xs-2">
+
+  </div>
+ 
+</div>
+
+<div class="row" style="margin-top:100px">
+  <div class="col-xs-2">
+  </div>
+  <div class="col-xs-8">
+  <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" onclick="get_height_weight()" >
+  <i class="material-icons">arrow_forward</i>
+  </button>
+  </div>
+  <div class="col-xs-2">
+  </div>
+   
+</div>
+
+</div>
+</div>
+  
+  
+  
+  
+  
+  
+<script>
+    var user_info = {
+	                  height_feet:"",
+					  height_inches:"",
+					  weight:"",
+					  goal:""
+	                };
+    
+   
+   
+   function get_height_weight()	
+	{
+	   alert("in function");
+	   var height_feet = document.getElementById("height_feet").value;
+	   var height_inches = document.getElementById("height_inches").value;
+	   alert(height_inches);
+       var weight = document.getElementById("weight").value;	
+       alert(weight);	   
+	   var error_height = 0;
+	   var error_weight = 0;
+	   if(height_feet<=0 || height_feet>8)
+	   {
+	     if(height_feet<=0)
+		 {
+		    alert("please enter a value greater than 0");
+		 }
+		 if(height_feet>8)
+		 {
+	      alert("Sultan was tallest man recorded!! I dont think you are him");
+		 } 
+		 error_height = 1;
+	   }
+	   
+	   if(height_feet == "")
+	   {
+	    alert("please enter a value");
+		error_height = 1;
+	   }
+	   
+	   if(height_inches == "")	
+	   {
+	     alert("please enter a value");
+		 error_height = 1;
+	   }
+	   
+	   if(height_inches>12 || height_inches<0)
+	   {
+	      alert("Enter the value between 0 and 12");
+		  error_height = 1; 
+	   }
+	   
+	   if(weight == "")
+	   {
+	     alert("please enter a value for weight");
+	   }
+	   
+	   if(weight <= 0)
+	   {
+	      alert("value should be greater than 0");
+		  error_weight = 1
+	   }
+	   alert(error_height);
+	   alert(error_weight);
+	   
+	   if(error_height == 0 && error_weight == 0)
+	   {
+	     alert("in");
+		 user_info.height_feet = height_feet;
+		 user_info.height_inches = height_inches;
+		 user_info.weight = weight;
+	     localStorage.setItem("user_info",JSON.stringify(user_info));
+	     alert(localStorage.getItem("user_info"));
+	     window.open("goal-test.html",'_self');
+	      
+	   }
+	   
+	   
+    }
+	
+	
+</script>
+</body>

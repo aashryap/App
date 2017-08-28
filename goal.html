@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue-amber.min.css" />
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
+</head>
+<style>
+body{ 
+   background: url("") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+   background-size: cover;
+}
+
+.input_userinfo
+{
+   margin-top:100px;
+}
+
+.card_muscle_gain
+{
+   background: url("") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+   background-size: cover;
+   margin:0 auto;
+   background:#D32F2F;
+}
+
+
+.card_text
+{
+  text-align:center;
+  font-family:Bree Serif;
+  font-size:30px;
+}
+
+.card_button
+{
+   float:right;
+}
+
+.card_goal
+{
+  margin-top:20px; 
+  padding:20px;
+}
+
+
+</style>
+
+<body>
+ 
+  <!--<div id="goal_weightgain" value="weight_gain" onclick="add_goal_weightgain()" goal="weight gain">
+    weight gain
+  </div>
+   <div id="goal_weightlose" value="weight_lose" onclick="add_goal_weightlose()" goal="weight lose">
+    weight lose
+  </div>
+   <div id="goal_musclegain" value="muscle_gain" onclick="add_goal_musclegain()" goal="muscle gain">
+    muscle gain
+  </div>
+  <button onclick="show()">show</button>
+  <a href="test.html">go to test..</a>-->
+  
+  <div class="container">
+<div class="row" style="text-align:center;font-family:Bree Serif">
+  <h2> Enter your goal </h2>
+</div>
+<div class="row card_goal" >
+ <div class="col-xs-2">
+ </div>
+ <div class="col-xs-12">
+    <div class="card_muscle_gain center-block">
+	    <div class="">
+		  <img  class="img-responsive" src="muscle-gain.jpg" alt="" />
+		</div>
+		
+		<div class="row" style="margin-top:20px;padding:10px">
+		<div class="col-xs-12 " style="text-align:center;">
+		  
+             <div class="col-xs-6 card_text">		   
+		      Muscle gain
+			 </div>
+			 
+			 <div class="card_button">
+		     <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored"  id="goal_musclegain"  value="muscle_gain" onclick="add_goal_musclegain()" goal="muscle gain">
+             <i class="material-icons">arrow_forward</i>
+             </button>
+			 </div>
+	    </div>
+		</div>
+		
+		
+		<div class="row">
+		
+		<div class="col-xs-12">
+		        
+       	</div>
+		</div>
+	</div>
+ </div>
+ <div class="col-xs-2">
+ </div>
+ 
+</div>
+
+<div class="row card_goal" >
+ <div class="col-xs-2">
+ </div>
+ <div class="col-xs-12">
+    <div class="card_muscle_gain center-block">
+	    <div class="">
+		  <img  class="img-responsive" src="fat-lose.jpg" alt="" />
+		</div>
+		
+		<div class="row" style="margin-top:20px;padding:10px">
+		<div class="col-xs-12 " style="text-align:center;">
+		  
+             <div class="col-xs-6 card_text">		   
+		      Weight lose
+			 </div>
+			 
+			 <div class="card_button">
+		     <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" id="goal_weightlose"  value="weight_lose" onclick="add_goal_weightlose()" goal="weight lose">
+             <i class="material-icons">arrow_forward</i>
+             </button>
+			 </div>
+	    </div>
+		</div>
+		
+		
+		<div class="row">
+		
+		<div class="col-xs-12">
+		        
+       	</div>
+		</div>
+	</div>
+ </div>
+ <div class="col-xs-2">
+ </div>
+ 
+</div>
+
+
+<div class="row card_goal" >
+ <div class="col-xs-2">
+ </div>
+ <div class="col-xs-12">
+    <div class="card_muscle_gain center-block">
+	    <div class="">
+		  <img  class="img-responsive" src="weight-gain.jpg" alt="" />
+		</div>
+		
+		<div class="row" style="margin-top:20px;padding:10px">
+		<div class="col-xs-12 " style="text-align:center;">
+		  
+             <div class="col-xs-6 card_text">		   
+		      Weight gain
+			 </div>
+			 
+			 <div class="card_button">
+		     <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" id="goal_weightgain" value="weight_gain" onclick="add_goal_weightgain()" goal="weight gain">
+             <i class="material-icons">arrow_forward</i>
+             </button>
+			 </div>
+	    </div>
+		</div>
+		
+		
+		<div class="row">
+		
+		<div class="col-xs-12">
+		        
+       	</div>
+		</div>
+	</div>
+ </div>
+ <div class="col-xs-2">
+ </div>
+ 
+</div>
+
+
+
+</div>
+  
+  
+</body>
+<script>
+  
+  
+  var user_info = JSON.parse(localStorage.getItem("user_info"));
+  alert(user_info);
+  function add_goal_weightgain()
+  {
+    user_info.goal = document.getElementById("goal_weightgain").getAttribute("goal");
+	alert(user_info.goal);
+	localStorage.setItem("user_info",JSON.stringify(user_info));
+	window.open("test.html",'_self');
+  }
+   function add_goal_weightlose()
+  {
+    user_info.goal = document.getElementById("goal_weightlose").getAttribute("goal");
+	alert(user_info.goal);
+	localStorage.setItem("user_info",JSON.stringify(user_info));
+    window.open("test.html",'_self');
+  }
+   function add_goal_musclegain()
+  {
+    user_info.goal = document.getElementById("goal_musclegain").getAttribute("goal");
+	alert(user_info.goal);
+	localStorage.setItem("user_info",JSON.stringify(user_info));
+	window.open("test.html",'_self');
+  }
+  function show()
+  {
+   alert(localStorage.getItem("user_info"));
+  }
+</script>
+</html>

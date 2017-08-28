@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+ <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+ 
+ <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> 
+</head>
+<body onload="main_chart()">
+
+<div id="chart_div" style="width:400; height:300"></div>
+<div id="protein_div" style="width:400; height:300"></div>
+<div id="carbohydrate_div" style="width:400; height:300"></div>
+<button id="protein_chart" onclick="protein_chart()">Protein chart</button>
+<button id="protein_chart" onclick="carbohydrate_chart()">Carbohydrate chart</button>
+</body>
+<script type="text/javascript" >
+     var user_info = JSON.parse(localStorage.getItem("user_info"));
+	 var goal = user_info.goal;
+	 //alert(user_info.weight);
+     var total_nutritional_info = JSON.parse(localStorage.getItem("total_nutritional_info"));
+     
+	
+	function main_chart()
+	{
+	 var data;
+     var chart;
+
+      // Load the Visualization API and the piechart package.
+      google.charts.load('current', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawChartMain);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChartMain() {
+
+        // Create our data table.
+        data = new google.visualization.DataTable();
+        data.addColumn('string', 'component');
+        data.addColumn('number', 'value');
+        data.addRows([
+          ['protein', total_nutritional_info.total_protein],
+          ['carbohydrate', total_nutritional_info.total_carbohydrate],
+          ['energy', total_nutritional_info.total_energy],
+        ]);
+
+        // Set chart options
+        var options = {'title':'Report of nutrient consumption',
+                       'width':400,
+                       'height':300};
+
+        // Instantiate and draw our chart, passing in some options.
+        chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+        google.visualization.events.addListener(chart, 'select', selectHandler);
+        chart.draw(data, options);
+      }
+      
+	  // after clicking in component
+      function selectHandler() {
+	    
+		var selectedItem = chart.getSelection()[0];
+        var value = data.getValue(selectedItem.row, 0);
+        alert('The user selected ' + value);
+	}
+	
+	}
+	
+	
+	function protein_chart()
+	{
+	 var data;
+     var chart;
+	 var recommended_protein;
+	 if(goal == "weight lose")
+	 {
+       recommended_protein = user_info.weight;
+	 }
+	 
+	 if(goal == "weight gain")
+	 {
+	    recommended_protein = 1.8 * user_info.weight;
+	 }
+	 
+	 if(goal == "muscle gain")
+	 {
+	    recommended_protein = 2.5 * user_info.weight;
+	 }
+	  
+	  //alert(user_weight);
+      // Load the Visualization API and the piechart package.
+      google.charts.load('current', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawChartProtein);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChartProtein() {
+
+        // Create our data table.
+        data = new google.visualization.DataTable();
+        data.addColumn('string', 'intake');
+        data.addColumn('number', 'value');
+        data.addRows([
+          ['recommended_protein_intake',Number(recommended_protein) ],
+          ['total_protein_intake', total_nutritional_info.total_protein],
+          //['energy', total_nutritional_info.total_energy],
+        ]);
+
+        // Set chart options
+        var options = {'title':'Report of nutrient consumption',
+                       'width':400,
+                       'height':300};
+
+        // Instantiate and draw our chart, passing in some options.
+        chart = new google.visualization.PieChart(document.getElementById('protein_div'));
+        google.visualization.events.addListener(chart, 'select', selectHandler);
+        chart.draw(data, options);
+      }
+      
+	  // after clicking in component
+      function selectHandler() {
+	    
+		var selectedItem = chart.getSelection()[0];
+        var value = data.getValue(selectedItem.row, 0);
+        alert('The user selected ' + value);
+	}
+	
+	}
+	
+	
+	function carbohydrate_chart()
+	{
+	 var data;
+     var chart;
+	 var recommended_carbohydrate;
+     var user_weight = user_info.weight;
+	 
+	 if(goal == "weight lose")
+	 {
+		recommended_carbohydrate = 0.5 * user_info.weight;
+	 }
+	 
+	 if(goal == "weight gain")
+	 {
+	    recommended_carbohydrate = 2.5 *user_info_weight;
+	 }
+	 
+	 if(goal == "muscle gain")
+	 {
+	    recommended_carbohydrate = user_info.weight;
+	 }
+	 alert(user_weight);
+      // Load the Visualization API and the piechart package.
+      google.charts.load('current', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawChartCarbohydrate);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChartCarbohydrate() {
+
+        // Create our data table.
+        data = new google.visualization.DataTable();
+        data.addColumn('string', 'intake');
+        data.addColumn('number', 'value');
+        data.addRows([
+          ['recommended_protein_intake',Number(user_weight) ],
+          ['total_protein_intake', total_nutritional_info.total_carbohydrate],
+          //['energy', total_nutritional_info.total_energy],
+        ]);
+
+        // Set chart options
+        var options = {'title':'Report of nutrient consumption',
+                       'width':400,
+                       'height':300};
+
+        // Instantiate and draw our chart, passing in some options.
+        chart = new google.visualization.PieChart(document.getElementById('carbohydrate_div'));
+        google.visualization.events.addListener(chart, 'select', selectHandler);
+        chart.draw(data, options);
+      }
+      
+	  // after clicking in component
+      function selectHandler() {
+	    
+		var selectedItem = chart.getSelection()[0];
+        var value = data.getValue(selectedItem.row, 0);
+        alert('The user selected ' + value);
+	}
+	
+	}
+	
+	
+	  
+	  
+
+    </script>
+</html>
