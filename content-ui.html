@@ -59,20 +59,25 @@
 <body onload="load_content();empty_if_null()">
 <div class="container" style="font-family:Bree Serif;text-align:center">
 <h2>Your selections</h2>
-<button onclick="get_total_nutrition()">Get Total</button>
+<div id="total_nutrition" class="row">
+
+  <table class="table table-responsive">
+    <tr>
+	  <th> Total Protein </th>
+	  <th> Total Carbohydrate </th>
+	  <th> Total Energy </th>
+	</tr>
+	<tr>
+	  <td id="total_protein"> </td>
+	  <td id="total_carbohydrate"> </td>
+	  <td id="total_energy"> </td>
+	</tr>
+  </table>
+</div>
+<!--<button onclick="get_total_nutrition()">Get Total</button>-->
 <div id="item_ate">
 </div>
-<div id="total_nutrition">
-  <div id="total_protein">
-    
-  </div>
-  <div id="total_carbohydrate">
-  
-  </div>
-  <div id="total_energy">
-  
-  </div>
-</div>
+
 <button onclick="get_report()">REPORT</button>
 </div>
 <div class="footer">
@@ -112,6 +117,7 @@ var json = JSON.parse(localStorage.getItem('added-items'));
 alert(json[0].Energy);
 function load_content()
 {
+   get_total_nutrition();
    alert("inside func");
    //var json = JSON.parse(localStorage.getItem('added-items'));
    if(localStorage.getItem("added-items") == null)
@@ -309,7 +315,9 @@ function get_total_nutrition()
   document.getElementById("total_protein").innerHTML = total_protein;
   document.getElementById("total_carbohydrate").innerHTML = total_carbohydrate;
   document.getElementById("total_energy").innerHTML = total_energy;
-  alert(total_energy);
+  
+  
+  
   return total_nutrition;
   
   
