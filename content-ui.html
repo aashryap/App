@@ -54,6 +54,10 @@
 	height:80px;
 	background-color:#D32F2F;
 } 
+.report_element{
+     padding:10px;
+     margin:20px;	 
+}
 </style>
 
 <body onload="load_content();empty_if_null()">
@@ -74,14 +78,71 @@
 	</tr>
   </table>
 </div>
-<!--<button onclick="get_total_nutrition()">Get Total</button>-->
-<div id="item_ate">
+
+<div id="report" class="report_div">
+
+
+   <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Report</h4>
+        </div>
+        <div class="modal-body">
+          
+		  
+		      <div class="row" style="text-align:center">
+                <h2>  </h2>
+              </div>
+  
+              <div class="row report_element" id="report_protein" class="">
+                <div id="result_protein">asdsdas </div>
+                <div id="protein_difference"> asdasdasd</div>
+              </div>
+  
+              <div class="row report_element" id="report_carbohydrate" class="">
+                <div id="result_carbohydrate"> asdsd </div>
+                <div id="carbohydrate_difference"> asd sdddad </div>
+              </div>
+		  
+		  
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+       </div>
+      
+      </div>
+    </div>
+   
+
 </div>
 
-<button onclick="get_report()">REPORT</button>
+  <div id="item_ate">
+  </div>  
+
+</div>
+
+
+<!--<button onclick="get_total_nutrition()">Get Total</button>-->
+
+
+
+
+
+<!--<button onclick="get_report()">REPORT</button>-->
 </div>
 <div class="footer">
 
+ 
+ 
+ 
+ 
+ 
+ 
  
  <div class="row">
     <div class="col-xs-2">
@@ -90,16 +151,14 @@
 	<div class="row" style="padding:5%">
         
 		<div class="col-xs-8">
-		<button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" style="margin:auto" onclick = "clear_data()" >
-        <i class="material-icons">delete</i>
+		<button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" style="margin:auto" data-toggle="modal" data-target="#myModal" onclick = "get_report()" >
+        <i class="material-icons">content_paste</i>
         </button>
 		</div>
 
-	<!--</div>-->
-	
-	    <div class="col-xs-4">
-	    <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" style="margin:auto" onclick="get_total()" >
-        <p class="material-icons">arrow_forward</p>
+        <div class="col-xs-4">
+	    <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" style="margin:auto" onclick="go_to_report()" >
+        <p class="material-icons">pie_chart</p>
         </button>
 	    </div>
 	
@@ -109,7 +168,6 @@
     </div>
     </div>	
  </div>
-</div>
 <script>
 
 var user_info = JSON.parse(localStorage.getItem('user_info'));
@@ -284,6 +342,7 @@ function item_remove()
 	}*/
 	this.parentNode.parentNode.parentNode.remove();
 	
+	get_total_nutrition();
 	
 }
 
@@ -344,17 +403,34 @@ function get_report()
     
 	carbohydrate_recommended_intake = 2.5 * user_info.weight;
 	total_carbohydrate = total_nutrition.total_carbohydrate;
+	var diff_carbohydrate = total_carbohydrate - carbohydrate_recommended_intake;
 	
 	if(diff_protein<0)
 	{
 	
 	    alert("you need to take more protein");
         alert("you are lacking "+ (-1)*diff_protein+" amount of protein from your diet");		
+		//alert(document.getElementById("result_protein").innerHTML);
+		document.getElementById("result_protein").innerHTML = "you need to take more protein";
+		document.getElementById("protein_difference").innerHTML = "you are lacking "+ (-1)*diff_protein+" amount of protein from your diet";
 	}
 	else
 	{
-	   alert("yor protein intake is satisfactory");
-	   alert("you are taking "+ diff_protein +" gms more protein which is a good sign");
+	   //alert("yor protein intake is satisfactory");
+	   //alert("you are taking "+ diff_protein +" gms more protein which is a good sign");
+	   document.getElementById("result_protein").innerHTML = "you are taking satisfactory amout of protein";
+	   document.getElementById("protein_difference").innerHTML = "you are taking "+ (-1)*diff_protein+" gms more which is a good sign";   
+	}
+	
+	if(diff_carbohydrate<0)
+	{
+	   document.getElementById("result_carbohydrate").innerHTML = "you need to take more carbohydrate";
+	   document.getElementById("carbohydrate_difference").innerHTML = "you are lacking "+ (-1)*diff_carbohydrate+" amount of carbohydrate from your diet";
+	}
+	else
+	{
+	   document.getElementById("result_carbohydrate").innerHTML = "you are taking satisfactory amount of carbohydrate";
+	   document.getElementById("carbohydrate_difference").innerHTML = "you are taking "+ (-1)*diff_carbohydrate+" gm more carbohydrate which is a good thing";
 	}
         
 	
@@ -366,24 +442,38 @@ function get_report()
     
 	protein_recommended_intake = user_info.weight;
 	total_protein = total_nutrition.total_protein;
+	diff_protein = total_protein - protein_recommended_intake;
 	
 	carbohydrate_recommended_intake = 0.5 * user_info.weight;
 	total_carbohydrate = total_nutrition.total_carbohydrate;
 	
-	alert(total_carbohydrate);
+	//alert(total_carbohydrate);
 	
 	var diff_carbohydrate = total_carbohydrate - carbohydrate_recommended_intake;
-	alert(diff_carbohydrate);
+	//alert(diff_carbohydrate);
 	if(diff_carbohydrate<0)
 	{
-	    alert("your carbohydrate intake is satisfactory");
-		alert("you are taking "+(-1)*diff_carbohydrate+" less carbohydrate");
-      	  
+	    //alert("your carbohydrate intake is satisfactory");
+		//alert("you are taking "+(-1)*diff_carbohydrate+" less carbohydrate");
+      	document.getElementById("result_carbohydrate").innerHTML = "your carbohydrate intake is satisfactory";
+        document.getElementById("carbohydrate_difference").innerHTML = "you are taking "+(-1)*diff_carbohydrate+" less carbohydrate";		
 	}
 	else
 	{
-	  alert("your carbohydrate intake is more");
-	  alert("your are taking "+diff_carbohydrate+" more carbohydrate");
+	   //alert("your carbohydrate intake is more");
+	   //alert("your are taking "+diff_carbohydrate+" more carbohydrate");
+	   document.getElementById("result_carbohydrate").innerHTML = "your carbohydrate intake is more";
+	   document.getElementById("carbohydrate_difference").innerHTML = "you are taking "+(-1)*diff_carbohydrate+" less carbohydrate";
+	}
+	if(diff_protein<0)
+	{
+	   document.getElementById("result_protein").innerHTML = "your protein intake is less";
+	   document.getElementById("protein_difference").innerHTML = "you are taking "+(-1)*diff_protein+"gm less protein";
+	}
+	else
+	{
+	   document.getElementById("result_protein").innerHTML = "your protein intake is satisfactory";
+	   document.getElementById("protein_difference").innerHTML = "you are taking "+(-1)*diff_protein+"gm more protein";
 	}
  }
  if(user_info.goal == "muscle gain")
@@ -393,17 +483,31 @@ function get_report()
 	
 	carbohydrate_recommended_intake = user_info.weight;
     total_carbohydrate = total_nutrition.total_carbohydrate;
-
+    diff_carbohydrate = total_carbohydrate - carbohydrate_recommended_intake;
+	 
 	diff_protein_musclegain = total_protein - protein_recommended; 
     if(diff_protein_musclegain<0)
     {
-	   alert("You are takin less protein");
-	   alert("you are taking "+(-1)*diff_protein_musclegain+" less protein");
+	   //alert("You are takin less protein");
+	   //alert("you are taking "+(-1)*diff_protein_musclegain+" less protein");
+	   document.getElementById("result_protein").innerHTML = "you are taking less protein";
+	   document.getElementById("protein_difference").innerHTML = "you are taking "+(-1)*diff_protein_musclegain+"gm less protein";
 	}
     else
     {
-       alert("your protein intake is satisfactory"); 	  
+       document.getElementById("result_protein").innerHTML = "your protein intake is satisfactory";
+	   document.getElementById("protein_difference").innerHTML = "you are taking "+ (-1)*diff_protein_musclegain+" gms more which is a good sign"; 
     }	
+	if(diff_carbohydrate<0)
+	{
+	   document.getElementById("result_carbohydrate").innerHTML = "you carbohydrate intake is less";
+	   document.getElementById("carbohydrate_difference").innerHTML = "you are taking "+ (-1)*diff_carbohydrate+" gms less carbohydrate"; 
+	}
+	else
+	{
+	  document.getElementById("result_carbohydrate").innerHTML = "you carbohydrate intake is satisfactory";
+	  document.getElementById("carbohydrate_difference").innerHTML = "you are taking "+ (-1)*diff_carbohydrate+" gms more carbohydrate";
+	}
 	
  }
   
@@ -423,5 +527,9 @@ function empty_if_null()
 	}   
   }
  
+ function go_to_report()
+ {
+    window.open("report.html",'_self');
+ }
 </script>
 </html>
