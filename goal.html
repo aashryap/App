@@ -208,25 +208,25 @@ body{
   
   
   var user_info = JSON.parse(localStorage.getItem("user_info"));
-  alert(user_info);
+  //alert(user_info);
   function add_goal_weightgain()
   {
     user_info.goal = document.getElementById("goal_weightgain").getAttribute("goal");
-	alert(user_info.goal);
+	//alert(user_info.goal);
 	localStorage.setItem("user_info",JSON.stringify(user_info));
 	window.open("test.html",'_self');
   }
    function add_goal_weightlose()
   {
     user_info.goal = document.getElementById("goal_weightlose").getAttribute("goal");
-	alert(user_info.goal);
+	//alert(user_info.goal);
 	localStorage.setItem("user_info",JSON.stringify(user_info));
     window.open("test.html",'_self');
   }
    function add_goal_musclegain()
   {
     user_info.goal = document.getElementById("goal_musclegain").getAttribute("goal");
-	alert(user_info.goal);
+	//alert(user_info.goal);
 	localStorage.setItem("user_info",JSON.stringify(user_info));
 	window.open("test.html",'_self');
   }
