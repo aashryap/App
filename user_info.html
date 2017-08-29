@@ -156,7 +156,7 @@ body{
    
    function get_height_weight()	
 	{
-	   alert("in function");
+	    //alert("in function");
 	   var height_feet = document.getElementById("height_feet").value;
 	   var height_inches = document.getElementById("height_inches").value;
 	   //alert(height_inches);
@@ -227,7 +227,7 @@ body{
 		 user_info.weight = weight;
 	     localStorage.setItem("user_info",JSON.stringify(user_info));
 		 localStorage.setItem("is_user_set","1");
-	     alert(localStorage.getItem("user_info"));
+	     //alert(localStorage.getItem("user_info"));
 	     window.open("goal.html",'_self');
 	      
 	   }
