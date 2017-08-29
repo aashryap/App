@@ -183,7 +183,7 @@ var json = JSON.parse(localStorage.getItem('added-items'));
 function load_content()
 {
    get_total_nutrition();
-   alert("inside func");
+   //alert("inside func");
    //var json = JSON.parse(localStorage.getItem('added-items'));
    if(localStorage.getItem("added-items") == null)
    {
@@ -377,7 +377,7 @@ function get_total_nutrition()
   //alert(total_nutrition);
   
   localStorage.setItem("total_nutritional_info",JSON.stringify(total_nutrition));
-  alert(localStorage.getItem("total_nutritional_info"));
+  //alert(localStorage.getItem("total_nutritional_info"));
   document.getElementById("total_protein").innerHTML = total_protein;
   document.getElementById("total_carbohydrate").innerHTML = total_carbohydrate;
   document.getElementById("total_energy").innerHTML = total_energy;

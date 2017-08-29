@@ -159,11 +159,11 @@ body{
 	   alert("in function");
 	   var height_feet = document.getElementById("height_feet").value;
 	   var height_inches = document.getElementById("height_inches").value;
-	   alert(height_inches);
+	   //alert(height_inches);
        var weight = document.getElementById("weight").value;	
-       alert(weight);
+      // alert(weight);
        var name = document.getElementById("user_name").value;
-       alert(name);	   
+       //alert(name);	   
 	   var error_name = 0;
 	   var error_height = 0;
 	   var error_weight = 0;
@@ -214,13 +214,13 @@ body{
 	      alert("value should be greater than 0");
 		  error_weight = 1
 	   }
-	   alert(error_height);
-	   alert(error_weight);
-	   alert(error_name);
+	   //alert(error_height);
+	   //alert(error_weight);
+	  // alert(error_name);
 	   
 	   if(error_height == 0 && error_weight == 0 && error_name == 0)
 	   {
-	     alert("in");
+	     //alert("in");
 		 user_info.name = name;
 		 user_info.height_feet = height_feet;
 		 user_info.height_inches = height_inches;
@@ -228,7 +228,7 @@ body{
 	     localStorage.setItem("user_info",JSON.stringify(user_info));
 		 localStorage.setItem("is_user_set","1");
 	     alert(localStorage.getItem("user_info"));
-	     window.open("goal-test.html",'_self');
+	     window.open("goal.html",'_self');
 	      
 	   }
 	   
