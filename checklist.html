@@ -27,6 +27,7 @@
   <input type="checkbox" onclick="strike_item()"   id="x" /> <label id="grocery_name">asdsadadads</label>
 </li>
 </ul>
+<button onclick="add_to_storage()">save</button>
 <script>
 
 
@@ -36,6 +37,12 @@
    
    var checklist = new Array();
    var list_item_id = 0; 
+   
+   function window_change()
+   {
+     window.open("test-ui.html",'_self');
+   }
+   
    function add_grocery_item()
    {
        var grocery_item = document.createElement("li");
@@ -53,39 +60,62 @@
 	   //alert(document.getElementById("grocery_name_to_be_added").value); 
 	   grocery_item_name.innerHTML = document.getElementById("grocery_name_to_be_added").value;
 	   grocery_item_name.id = document.getElementById("grocery_name_to_be_added").value;
+	   
 	   checklist.push(document.getElementById("grocery_name_to_be_added").value);
-	   //grocery_item_name.onclick = strike_item;
+	  
+	  //grocery_item_name.onclick = strike_item;
 	   grocery_item.append(grocery_item_name);
 	   document.getElementById("grocery_list").append(grocery_item);
 	  
 	   var remove_item = document.createElement("button");
 	   remove_item.innerHTML = "remove";
+	   remove_item.value = document.getElementById("grocery_name_to_be_added").value;
 	   remove_item.onclick = remove_this_item;
 	   grocery_item.append(remove_item);
 	   
+	   //add_to_storage();
 	   
 	   
-	   
-   }
+	}
    
-   function concate_previous()
- {
-    if()
-	{
-     var previous_items = localStorage.getItem('checklist');
-    //alert(previous_items);
-     if(previous_items!= null)
-	 {
-       var previous_json = JSON.parse(previous_items);
-       var concated_array	= previous_json.concat(fooditems);
-       localStorage.setItem('added-items',JSON.stringify(concated_array));
-	 }
-     else
-     { 
-	   localStorage.setItem('added-items',JSON.stringify(fooditems));
-     } 	
-   }
-   
+   function add_to_storage()
+   {
+       /* var previous_items = JSON.parse(localStorage.getItem("checklist"));    
+	   	if(previous_items == null)
+          {
+		    localStorage.setItem("checklist",JSON.stringify(checklist));  
+	      }   		  
+        if(previous_items != null)
+           {
+		          
+		      //var previous_items = JSON.parse(localStorage.getItem("checklist"));
+              //alert(previous_items);		     
+			  var concated_array = previous_items.concat(checklist);
+		      //alert(concated_array);
+			  localStorage.setItem("checklist",JSON.stringify(concated_array));
+			  alert(localStorage.getItem("checklist"));
+		   }
+        
+		else
+           {
+		       alert("in else");
+		       localStorage.setItem("checklist",JSON.stringify(checklist));
+           }		   
+		 alert("in akjhdisahd");
+		 alert(checklist.length);
+		 for(var i=0;i<checklist.length;i++)
+		 {
+		    alert("ljydohadjhas");
+		    alert(checklist[i]);
+		    checklist.pop();
+		 }*/
+		 
+		 localStorage.setItem("checklist",JSON.stringify(checklist));
+		 
+    
+	}
+ 
+ 
    function strike_item()
    {
       var parent_id = this.parentNode; 
@@ -132,10 +162,75 @@
 	 
 	function remove_this_item()
      {
-	    alert("in remove item"); 
-	    this.parentNode.remove();  
-	     
+	    //var checklist = JSON.parse(localStorage.getItem("checklist"));
+	    
+	  
+     	/*var checklist = JSON.parse(localStorage.getItem("checklist"));
+		
+		alert(checklist); 		
+		alert(checklist.length);
+		if(checklist.length == 1)
+	    {
+		 alert("in if");
+		 
+		 alert(checklist[0]);
+	     localStorage.removeItem("checklist");
+		 //delete checklist[0];
+		 
+		 /*for(var j=0;j<checklist.length;j++)
+	     {
+           localStorage.setItem('checklist', JSON.stringify(checklist));	  
+	     }
+		 
+    	}*/
+		/*else
+		{
+		 alert("in else");
+		 for(var i =0;i < checklist.length;i++)
+		 {
+          if(checklist[i] == this.value)
+	      {
+	       //alert("deleted "+json[i].Description);
+	        var removed_item = checklist.splice(i,1);
+	        alert(removed_item);
+	       //delete json[i];
+	      }
+		 }
+		
+		for(var j=0;j<checklist.length;j++)
+	    {
+         localStorage.setItem('checklist', JSON.stringify(checklist));	  
+	    }
+		}
+		checklist = [];*/
+		
+		var checklist = JSON.parse(localStorage.getItem("checklist"));
+		alert(checklist.length);
+		alert(checklist[0]);
+		for(var i=0;i<checklist.length;i++)
+		{
+		   if(i>0 && (checklist[i] == this.value))
+		   {
+		      alert(i);
+		      var removed_item = checklist.splice(i,1);
+	          alert(removed_item);
+			  
+		   }
+		   if(i == 0)
+		   {
+		     alert("i=0");
+		     localStorage.removeItem("checklist");
+		   }
+		   
+		}
+		for(var i=0;i<checklist.length;i++)
+		{
+		   localStorage.setItem("checklist",JSON.stringify(checklist));
+		}
+		this.parentNode.remove();
+		
 	 }
+	 
 	
 </script>
 </body>
