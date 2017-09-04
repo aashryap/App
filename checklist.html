@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue-amber.min.css" />
+<!-- Latest compiled and  minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
+
+</head>
+<body>
+<div>
+  <input type="text" id="grocery_name_to_be_added"/><button id="add" onclick="add_grocery_item()"> Add </button>
+</div>
+<ul id="grocery_list">
+<li>
+  <input type="checkbox" onclick="strike_item()"   id="x" /> <label id="grocery_name">asdsadadads</label>
+</li>
+</ul>
+<script>
+
+
+
+   //var unstriked = document.getElementById("name").innerHTML;
+   //var striked = unstriked.strike();
+   
+   var checklist = new Array();
+   var list_item_id = 0; 
+   function add_grocery_item()
+   {
+       var grocery_item = document.createElement("li");
+	   //grocery_item.setAttribute("id",list_item_id);
+       //list_item_id++;
+	  
+	   var grocery_input = document.createElement("input");
+	   grocery_input.type = "checkbox";
+	   grocery_input.setAttribute("id",list_item_id);
+	   list_item_id++;
+	   grocery_input.onclick = strike_item;
+	   grocery_item.append(grocery_input);
+	   
+	   var grocery_item_name = document.createElement("label");
+	   //alert(document.getElementById("grocery_name_to_be_added").value); 
+	   grocery_item_name.innerHTML = document.getElementById("grocery_name_to_be_added").value;
+	   grocery_item_name.id = document.getElementById("grocery_name_to_be_added").value;
+	   checklist.push(document.getElementById("grocery_name_to_be_added").value);
+	   //grocery_item_name.onclick = strike_item;
+	   grocery_item.append(grocery_item_name);
+	   document.getElementById("grocery_list").append(grocery_item);
+	  
+	   var remove_item = document.createElement("button");
+	   remove_item.innerHTML = "remove";
+	   remove_item.onclick = remove_this_item;
+	   grocery_item.append(remove_item);
+	   
+	   
+	   
+	   
+   }
+   
+   function concate_previous()
+ {
+    if()
+	{
+     var previous_items = localStorage.getItem('checklist');
+    //alert(previous_items);
+     if(previous_items!= null)
+	 {
+       var previous_json = JSON.parse(previous_items);
+       var concated_array	= previous_json.concat(fooditems);
+       localStorage.setItem('added-items',JSON.stringify(concated_array));
+	 }
+     else
+     { 
+	   localStorage.setItem('added-items',JSON.stringify(fooditems));
+     } 	
+   }
+   
+   function strike_item()
+   {
+      var parent_id = this.parentNode; 
+      alert(parent_id.nodeName);	  
+      //var item_name = document.getElementById(id).innerHTML;
+	  //var unstriked = document.getElementById("name").innerHTML;
+      //var striked = unstriked.strike();
+	  
+	  //alert("in ajdh asud");
+      //document.getElementById("x").checked;
+      //var y = document.getElementById("x").checked;
+	  var check = this.checked;
+	  alert(check);
+      
+	  if(check)
+	  {
+	    alert("asdsad");
+        //document.getElementById("x").checked;	  
+        //var id = "name";  
+        //var content = document.getElementById("name").innerHTML;
+        var parent_name = this.parentNode;
+	    var child = parent_name.childNodes;
+		for(var i=0;i<child.length;i++)
+		{
+		   alert(child[i].nodeName);
+		}
+		child[1].innerHTML = "<strike>"+ child[1].innerHTML + "</strike>";
+		 
+	  }
+	  
+	  if(check == false)
+	  { 
+	      //alert(unstriked);
+	      //var content = document.getElementById("name").innerHTML;
+          //document.getElementById("name").innerHTML = unstriked;
+		  var parent_name = this.parentNode;
+		  var child = parent_name.childNodes;
+		  child[1].innerHTML = child[1].childNodes[0].innerHTML;
+	  }
+	  
+	 }
+	 
+	 
+	 
+	function remove_this_item()
+     {
+	    alert("in remove item"); 
+	    this.parentNode.remove();  
+	     
+	 }
+	
+</script>
+</body>
+</html>

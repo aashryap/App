@@ -1,0 +1,31 @@
+<html>
+<body>
+   <ul id="grocery_list">
+     <li id="list">
+      <input type="checkbox" onclick="strike_item(this.id)"  id="x" /> <p id="grocery_name">asdsadadads</p>
+     </li>
+   </ul>
+   <script>
+      
+       var x = document.getElementById("list").childNodes;
+	   //alert(x.nodeName);
+	   alert(x[3].innerHTML);
+	   alert(x.length);
+	   //for(var i=0;i<x.length;i++)
+	   //{
+	   // alert(x[i].nodeName);
+	   // }
+	   
+	   function strike_item(x)
+	   {
+	   
+       	  alert(x); 
+	      //alert("asdasd");
+		  var parent_node = document.getElementById(x).parentNode;
+	      var child = parent_node.childNodes;
+		  child[3].innerHTML = child[3].innerHTML.strike();
+	   }
+	   
+   </script>
+</body>
+</html>
