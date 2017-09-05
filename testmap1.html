@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkADGTJ4pivP9x-8b9F7m0EWQ9wngaZkQ&callback=initMap"
+    async defer></script>-->
+	
+	<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+</head>
+<body>
+<script>
+var origin1 = new google.maps.LatLng(55.930385, -3.118425);
+var origin2 = 'Greenwich, England';
+var destinationA = 'Stockholm, Sweden';
+var destinationB = new google.maps.LatLng(50.087692, 14.421150);
+
+var service = new google.maps.DistanceMatrixService();
+service.getDistanceMatrix(
+  {
+    origins: [origin1, origin2],
+    destinations: [destinationA, destinationB],
+    travelMode: 'DRIVING',
+    
+    unitSystem: google.maps.UnitSystem.METRIC,
+    
+  }, callback);
+
+function callback(response, status) {
+  // See Parsing the Results for
+  // the basics of a callback function.
+  alert(status);
+  alert(response.rows[0].elements[0].distance.text);
+}
+
+</script>
+</body>
+</html>

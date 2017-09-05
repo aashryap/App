@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+	
+
+	<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkADGTJ4pivP9x-8b9F7m0EWQ9wngaZkQ&callback=initMap"
+    async defer></script>-->
+   <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+  </head>
+  <body>
+    <button onclick="getLocationStart()" value="start">Start</button>
+	<button onclick="getLocationStop()" value="stop">Stop</button>
+	<button onclick="get_distance()">Distance</button>
+    <div id="map"></div>
+    <script>
+	 var start_latitude;
+	 var start_longitude;
+	 var stop_latitude;
+	 var stop_longitude;
+     var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -34.397, lng: 150.644},
+          zoom: 8
+        });
+      }
+	  
+	  function getLocationStart()
+	  {
+	    navigator.geolocation.getCurrentPosition(showpositionstart);
+	  }
+	  function showpositionstart(pos)
+	  {
+	    
+	    alert("adsasdsad");
+		//alert(x);
+	
+		 alert("in start");
+	     alert(pos.coords.latitude);
+		 start_latitude = pos.coords.latitude; 
+		 alert(pos.coords.longitude)
+		 start_longitude = pos.coords.longitude;
+	 }
+	 
+	 
+	 
+	 function getLocationStop()
+	  {
+	    navigator.geolocation.getCurrentPosition(showpositionstop);
+	  }
+	  function showpositionstop(pos)
+	  {
+	    
+	    alert("adsasdsad");
+		//alert(x);
+	
+		 alert("in start");
+	     alert(pos.coords.latitude);
+		 stop_latitude = pos.coords.latitude; 
+		 alert(pos.coords.longitude)
+		 stop_longitude = pos.coords.longitude;
+	 }
+	  
+	  
+	  function get_distance()
+	  {
+	    
+	   
+	    var origin = new google.maps.LatLng(start_latitude,start_longitude);
+
+      
+        var destination = new google.maps.LatLng(stop_latitude,stop_longitude);
+ 
+        var service = new google.maps.DistanceMatrixService();
+        service.getDistanceMatrix(
+        {
+         origins: [origin],
+         destinations: [destination],
+         travelMode: 'DRIVING',
+    
+         unitSystem: google.maps.UnitSystem.METRIC,
+    
+  }, callback);
+
+function callback(response, status) {
+  // See Parsing the Results for
+  // the basics of a callback function.
+  alert(status);
+  //alert(response);
+  alert(JSON.stringify(response.rows[0]));
+  alert(response.rows[0].elements[0].distance.text);
+}
+}
+    </script>
+    <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkADGTJ4pivP9x-8b9F7m0EWQ9wngaZkQ&callback=initMap"
+    async defer></script>-->
+	
+  </body>
+</html>
