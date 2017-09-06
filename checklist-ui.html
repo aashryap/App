@@ -19,7 +19,7 @@
 
 </head>
 <style>
-.items_appended
+  .items_appended
 {
 
    padding:10px;
@@ -28,35 +28,84 @@
    background-color:#D32F2F;
    box-shadow:7px 7px 5px #888888;
 }
+
+.grocery_list
+{
+    font-size:20px;
+   
+}
+.footer{
+    position: fixed;
+    bottom: 0;
+	width:100%;
+	height:80px;
+	background-color:#D32F2F;
+} 
 </style>
 <body>
-<<<<<<< HEAD
-<div class="container">
-<div class="row" style="font-family:Bree Serif;text-align:center">
-    <h2>Graphical Report</h2>
-  </div> 
-=======
 <div class="container" style="font-family:Bree Serif;"> 
-<div  style="text-align:center">
-<h2 >Checklist</h2>
+<div  class="row" style="text-align:center">
+<h2 class="">Checklist</h2>
 </div>
 
 <div style="margin-top:40px">
->>>>>>> bad625d4a32f831258e5a819db7fa02696093356
-<div>
-  <input type="text" id="grocery_name_to_be_added"/><button id="add" onclick="add_grocery_item()"> Add </button>
+<div class="row">
+<div class="col-xs-2">
+</div>
+<div class="row col-xs-8">
+<div class="col-xs-8" style=""> 
+  <!--<input type="text" id="grocery_name_to_be_added" />-->
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" id="grocery_name_to_be_added">
+    <label class="mdl-textfield__label" for="grocery_name_to_be_added">Enter new field</label>
+  </div>
+</div>  
+<div clas="col-xs-4" text-align="center">
+  <!--<button id="add" onclick="add_grocery_item()"> Add </button>-->
+  <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" onclick="add_grocery_item()">
+    <i class="material-icons">add</i>
+  </button>
+</div>
+
+</div>
+<div class="col-xs-2">
+</div>
 </div>
 <ul id="grocery_list">
+<!--<div class="">
 <li>
   <input type="checkbox" onclick="strike_item()"   id="x" /> <label id="grocery_name">asdsadadads</label>
 </li>
+</div>-->
 </ul>
-<button onclick="add_to_storage()">save</button>
 </div>
-<<<<<<< HEAD
-=======
 </div>
->>>>>>> bad625d4a32f831258e5a819db7fa02696093356
+
+<div class="footer">
+<div class="row">
+    <div class="col-xs-2">
+    </div>	
+    <div class="col-xs-8">
+	<div class="row" style="padding:5%">
+        
+		<div class="col-xs-8">
+		<button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" style="margin:auto" onclick = "window_change()" >
+        <i class="material-icons">arrow_backward</i>
+        </button>
+		</div>
+
+        <div class="col-xs-4">
+	    <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" style="margin:auto" onclick="add_to_storage()" >
+        <p class="material-icons">save</p>
+        </button>
+	    </div>
+	
+	</div>
+	</div>
+    <div class="col-xs-2">
+    </div>
+    </div>	
+</div>
 <script>
 
 
@@ -74,11 +123,16 @@
    
    function add_grocery_item()
    {
+       var container_div = document.createElement("div");
+       container_div.className = "items_appended"; 
+		
        var grocery_item = document.createElement("li");
 	   //grocery_item.setAttribute("id",list_item_id);
        //list_item_id++;
+	   grocery_item.className = "row grocery_list";
 	  
 	   var grocery_input = document.createElement("input");
+	   grocery_input.className = "col-xs-2"
 	   grocery_input.type = "checkbox";
 	   grocery_input.setAttribute("id",list_item_id);
 	   list_item_id++;
@@ -86,6 +140,8 @@
 	   grocery_item.append(grocery_input);
 	   
 	   var grocery_item_name = document.createElement("label");
+	   grocery_item_name.className = "col-xs-6";
+	  
 	   //alert(document.getElementById("grocery_name_to_be_added").value); 
 	   grocery_item_name.innerHTML = document.getElementById("grocery_name_to_be_added").value;
 	   grocery_item_name.id = document.getElementById("grocery_name_to_be_added").value;
@@ -94,14 +150,28 @@
 	  
 	  //grocery_item_name.onclick = strike_item;
 	   grocery_item.append(grocery_item_name);
-	   document.getElementById("grocery_list").append(grocery_item);
-	  
+	   //document.getElementById("grocery_list").append(grocery_item);
+	   var button_div = document.createElement("div");
+	   button_div.className = "col-xs-2";
 	   var remove_item = document.createElement("button");
-	   remove_item.innerHTML = "remove";
+	   remove_item.className = "mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored";
+	   //remove_item.innerHTML = "remove";
+	   
 	   remove_item.value = document.getElementById("grocery_name_to_be_added").value;
 	   remove_item.onclick = remove_this_item;
-	   grocery_item.append(remove_item);
 	   
+	   button_div.append(remove_item);
+	   grocery_item.append(button_div);
+	   
+	   var button_inner = document.createElement("i");
+	   button_inner.className = "material-icons";
+	   button_inner.innerHTML = "delete";
+	   remove_item.append(button_inner); 
+     	 
+	   container_div.append(grocery_item);
+	  
+
+	  document.getElementById("grocery_list").append(container_div);
 	   //add_to_storage();
 	   
 	   
@@ -256,7 +326,7 @@
 		{
 		   localStorage.setItem("checklist",JSON.stringify(checklist));
 		}
-		this.parentNode.remove();
+		this.parentNode.parentNode.parentNode.remove();
 		
 	 }
 	 
