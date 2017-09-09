@@ -19,6 +19,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Aldrich" rel="stylesheet">
+<<<<<<< HEAD
+=======
+	</head>
+>>>>>>> 3a351bc85e0b478a586aaa5efa3dade17242c56a
     <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -38,19 +42,40 @@
        -o-background-size: cover;
        background-size: cover;
       }
+<<<<<<< HEAD
+=======
+	  .background
+	  {
+	     background: url(".jpg") no-repeat center center fixed; 
+       -webkit-background-size: cover;
+       -moz-background-size: cover;
+       -o-background-size: cover;
+       background-size: cover;
+	  }
+>>>>>>> 3a351bc85e0b478a586aaa5efa3dade17242c56a
     </style>
 	
 
 	<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkADGTJ4pivP9x-8b9F7m0EWQ9wngaZkQ&callback=initMap"
     async defer></script>-->
    <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
-  </head>
+  
   <body>
   
    
    <div class="container" style="font-family:Bree Serif;text-align:center;background:#D32F2F;opacity:0.8">
     <h2> Calculate calories burned </h2>
    </div>
+<<<<<<< HEAD
+=======
+  <!--<div class="col-xs-12 background" style="height:100px">
+        
+		<div class="">
+           
+		</div>		
+	  
+   </div>-->
+>>>>>>> 3a351bc85e0b478a586aaa5efa3dade17242c56a
    <div class="row" style="margin-top:80px;">
    <div class="col-xs-12" style="text-align:center;opacity:">
     <button class="btn btn-lg" onclick="getLocationStart()" style="background:#D32F2F" value="start">Start</button>
@@ -133,7 +158,6 @@
          origins: [origin],
          destinations: [destination],
          travelMode: 'DRIVING',
-    
          unitSystem: google.maps.UnitSystem.METRIC,
     
   }, callback);
@@ -145,7 +169,11 @@
   //alert(response);
      alert(JSON.stringify(response.rows[0]));
     alert(response.rows[0].elements[0].distance.text);
+<<<<<<< HEAD
 	document.getElementById("distance").innerHTML = response.rows[0].elements[0].distance.text;
+=======
+	document.getElementById("distance").innerHTML = response.rows[0].elements[0].distance.text ;
+>>>>>>> 3a351bc85e0b478a586aaa5efa3dade17242c56a
     }
     }
     </script>

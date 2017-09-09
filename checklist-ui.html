@@ -71,13 +71,13 @@
 <div class="col-xs-2">
 </div>
 </div>
-<ul id="grocery_list">
+<div id="grocery_list">
 <!--<div class="">
 <li>
   <input type="checkbox" onclick="strike_item()"   id="x" /> <label id="grocery_name">asdsadadads</label>
 </li>
 </div>-->
-</ul>
+</div>
 </div>
 </div>
 
@@ -126,7 +126,7 @@
        var container_div = document.createElement("div");
        container_div.className = "items_appended"; 
 		
-       var grocery_item = document.createElement("li");
+       var grocery_item = document.createElement("div");
 	   //grocery_item.setAttribute("id",list_item_id);
        //list_item_id++;
 	   grocery_item.className = "row grocery_list";
@@ -209,7 +209,7 @@
 		    checklist.pop();
 		 }*/
 		 
-		 localStorage.setItem("checklist",JSON.stringify(checklist));
+		 //localStorage.setItem("checklist",JSON.stringify(checklist));
 		 
     
 	}
@@ -303,7 +303,7 @@
 		}
 		checklist = [];*/
 		
-		var checklist = JSON.parse(localStorage.getItem("checklist"));
+		/*var checklist = JSON.parse(localStorage.getItem("checklist"));
 		alert(checklist.length);
 		alert(checklist[0]);
 		for(var i=0;i<checklist.length;i++)
@@ -325,7 +325,7 @@
 		for(var i=0;i<checklist.length;i++)
 		{
 		   localStorage.setItem("checklist",JSON.stringify(checklist));
-		}
+		}*/
 		this.parentNode.parentNode.parentNode.remove();
 		
 	 }
