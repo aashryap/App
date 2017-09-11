@@ -1,0 +1,131 @@
+<!DOCTYPE htm>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue-amber.min.css" />
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
+</head>
+<style>
+
+  .checklist_items
+  {
+     padding:10px;
+   margin-top:20px;
+   margin-bottom:20px;
+   background-color:#D32F2F;
+   box-shadow:7px 7px 5px #888888;
+  }
+ 
+</style>
+<body>
+
+<div class="container-fluid">
+   <div style="font-family:Bree Serif;text-align:center">
+     <h2> Checklist </h2>
+   </div>
+   <div class="row" style="margin-top:80px"> 
+        <div class="col-xs-2">
+		</div>
+		<div class="col-xs-8 row">
+		<div>
+		  
+		     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+             <input class="mdl-textfield__input" type="text" id="grocery_name_to_be_added">
+             <label class="mdl-textfield__label" for="grocery_name_to_be_added">Enter new field</label>
+             </div>
+        </div>  
+        
+		</div>
+		
+		
+		<div class="col-xs-2">
+		   <div clas="col-xs-4" text-align="center">
+          <!--<button id="add" onclick="add_grocery_item()"> Add </button>-->
+             <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" onclick="add_grocery_item()">
+             <i class="material-icons">add</i>
+             </button>
+        </div>
+		</div>
+	</div>	
+	
+	<div class="" id="grocery_list">
+	
+	
+	</div>
+</div>
+
+
+</div>
+
+
+<script>
+    function add_grocery_item()
+	{
+	     var grocery_item = document.getElementById("grocery_name_to_be_added").value;
+		 
+		 var main_div  = document.createElement("div");
+		 main_div.className = "row";
+		 
+		 var first_div = document.createElement("div");
+		 first_div.className = "col-xs-2";
+		 
+         var inner_div = document.createElement("div"); 		 
+		 inner_div.className = "col-xs-8 row checklist_items"; 
+		 
+		 var input = document.createElement("input");
+		 input.type = "checkbox";
+		 input.onclick = strike_name;
+		 input.className = "col-xs-2";
+		 inner_div.append(input);
+		 
+		 var grocery_item_name = document.createElement("div");
+		 grocery_item_name.innerHTML = document.getElementById("grocery_name_to_be_added").value;
+		 grocery_item_name.className = "col-xs-10";
+		 inner_div.append(grocery_item_name);
+		 
+		 var last_div = document.createElement("div");
+		 last_div.className = "col-xs-2";
+	
+		 
+		 main_div.append(first_div);
+		 main_div.append(inner_div);
+		 main_div.append(last_div);
+		 
+	     
+         document.getElementById("grocery_list").append(main_div);	
+         		 
+	}
+	
+	function strike_name()
+	{
+	  var parent = this.parentNode;
+	  //alert(parent.childNodes[1].innerHTML);
+	  //alert(this.checked);
+	  var grocery_item = document.getElementById("grocery_name_to_be_added").value;
+	  
+	  if(this.checked)
+	  {
+	    this.parentNode.childNodes[1].innerHTML = "<strike>"+ grocery_item +"</strike>";    
+	  }
+	  else
+	  { 
+	    this.parentNode.childNodes[1].innerHTML = grocery_item;
+	  }
+	  
+	}
+</script>
+
+</body>
+</html>
