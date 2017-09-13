@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue-amber.min.css" />
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
+</head>
+<style>
+   .heading
+   {
+     font-family: Bree Serif;
+	 text-align:center;
+   }
+   
+   .recipie_card
+   {
+     height:100px;
+	 width:100%;
+   }
+   
+   .recipie_row
+   {
+    padding:10px;
+    margin-top:20px;
+    margin-bottom:20px;
+    background-color:#D32F2F;
+    box-shadow:7px 7px 5px #888888;
+	text-align:center;
+	font-family:Bree Serif;
+   }
+   
+</style>
+<body>
+   <div class="container-fluid">
+    <div class="heading"> 
+	  <h2>Recipies</h2>
+	</div> 
+   
+   
+   <div class="row " id="rec_1">
+     <div class="col-xs-2"> 
+	 </div>
+	 <div class="row col-xs-8 recipie_row">
+	     Creamy Red Pepper Pasta		
+	 </div>
+	 <div class="col-xs-2">
+	 </div>
+   </div>
+   </div>
+   <script>
+     document.getElementById("rec_1").addEventListener("click",function()
+	 {
+	    //window.location.href = "recipie.html?'id':"+this.getAttribute("id"); 
+	    window.open("pasta.html",'_self');
+	 }) 
+   </script>
+   
+   
+</body>
+</html>

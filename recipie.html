@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    ad asjdas
+  </body>
+  <script>
+    //alert(window.location.href);
+    var url = window.location.href;
+    //alert(url[0]);
+   	var url_json;
+    for(i = 0 ;i<url.length;i++)
+        {
+            if(url[i] == '?')
+              {
+			    alert(url.slice(i+1));
+	            var url_slice ="{"+ url.slice(i+1)+"}";
+				
+				url_slice = url_slice.replace(/%27/g, "'");
+				url_slice = toString(url_slice);
+				alert(url_slice);
+				url_json = JSON.parse(url_slice); 
+              }			  
+			  
+        }
+    alert(url_json.id); 		
+  </script>
+</html>
